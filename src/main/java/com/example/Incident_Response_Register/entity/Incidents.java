@@ -17,7 +17,7 @@ public class Incidents {
 
     }
 
-    public Incidents(Long incidentNo, String dateOfIncident, String reportingDate, String natureOfIncident, String placeOfIncident, String actionsTaken, String incidentStatus, String completionDate, String respondedBy, String initiator, String responsibleOfficer, String impact, String severity, String stakeholders, String actionsRequiredBy, String remarks) {
+    public Incidents(Long incidentNo, String dateOfIncident, String reportingDate, String natureOfIncident, String placeOfIncident, String actionsTaken, String incidentStatus, String completionDate, String initiator, String responsibleOfficer, String impact, String severity, String stakeholders, String actionsRequiredBy, String remarks) {
         this.incidentNo = incidentNo;
         this.dateOfIncident = dateOfIncident;
         this.reportingDate = reportingDate;
@@ -26,9 +26,8 @@ public class Incidents {
         this.actionsTaken = actionsTaken;
         this.incidentStatus = incidentStatus;
         this.completionDate = completionDate;
-        this.respondedBy = respondedBy;
         this.initiator = initiator;
-        this.ResponsibleOfficer = responsibleOfficer;
+        this.responsibleOfficer = responsibleOfficer;
         this.impact = impact;
         this.severity = severity;
         this.stakeholders = stakeholders;
@@ -37,7 +36,7 @@ public class Incidents {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long incidentNo;
     private String dateOfIncident;
     private String reportingDate;
@@ -46,13 +45,11 @@ public class Incidents {
     private String actionsTaken;
     private String incidentStatus;
     private String completionDate;
-    private String respondedBy;
     private String initiator;
-    private String ResponsibleOfficer;
+    private String responsibleOfficer;
     private String impact;
     private String severity;
     private String stakeholders;
     private String actionsRequiredBy;
     private String remarks;
-
 }
