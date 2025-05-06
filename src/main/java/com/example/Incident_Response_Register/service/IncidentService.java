@@ -12,13 +12,19 @@ public class IncidentService {
     @Autowired
     IncidentRepo incidentRepo;
 
-    List<Incidents> findall() {
-        return findall();
-    }
 
+    public List<Incidents> getAllIncidents() {
+        return incidentRepo.findAll();
+    }
     public Incidents addIncident(Incidents incident) {
 
         return incidentRepo.save(incident);
+    }
+    public void deleteIncidentById(Long id) {
+        incidentRepo.deleteById(id);
+    }
+    public void deleteIncidentsByIds(List<Long> ids) {
+        incidentRepo.deleteAllById(ids);
     }
 
 }
