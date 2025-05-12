@@ -12,17 +12,17 @@ import lombok.Setter;
 @Entity
 public class Incidents {
 
-
     public Incidents() {
 
     }
 
-    public Incidents(Long incidentNo, String dateOfIncident, String reportingDate, String natureOfIncident, String placeOfIncident, String actionsTaken, String incidentStatus, String completionDate, String initiator, String responsibleOfficer, String impact, String severity, String stakeholders, String actionsRequiredBy, String remarks) {
+    public Incidents(Long incidentNo, String dateOfIncident, String briefDescription, String reportingDate, String natureOfIncident, String placeOfIncident, String actionsTaken, String incidentStatus, String completionDate, String initiator, String responsibleOfficer, String impact, String severity, String stakeholders, String actionsRequiredBy, String remarks) {
         this.incidentNo = incidentNo;
         this.dateOfIncident = dateOfIncident;
         this.reportingDate = reportingDate;
         this.natureOfIncident = natureOfIncident;
         this.placeOfIncident = placeOfIncident;
+        this.briefDescription = briefDescription;
         this.actionsTaken = actionsTaken;
         this.incidentStatus = incidentStatus;
         this.completionDate = completionDate;
@@ -36,12 +36,13 @@ public class Incidents {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long incidentNo;
     private String dateOfIncident;
     private String reportingDate;
     private String natureOfIncident;
     private String placeOfIncident;
+    private String briefDescription;
     private String actionsTaken;
     private String incidentStatus;
     private String completionDate;
