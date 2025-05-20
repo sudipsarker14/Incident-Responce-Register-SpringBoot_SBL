@@ -1,6 +1,5 @@
 package com.example.Incident_Response_Register.controller;
 import com.example.Incident_Response_Register.entity.Incidents;
-import com.example.Incident_Response_Register.repository.IncidentRepo;
 import com.example.Incident_Response_Register.service.IncidentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -9,9 +8,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/incident")
 public class IncidentController {
 
-   @Autowired
+    @Autowired
     IncidentService incidentService;
 
     @PostMapping("/addIncident")
@@ -19,25 +19,25 @@ public class IncidentController {
     public Incidents addIncident(@RequestBody Incidents incident) {
         return incidentService.addIncident(incident);
     }
-    @GetMapping("/deshboard")
+    @GetMapping("/table")
     @CrossOrigin(origins = "http://localhost:3000")
     public List<Incidents> getAllIncidents() {
         return incidentService.getAllIncidents();
     }
 
-    @DeleteMapping("/deshboard/{id}")
+    @DeleteMapping("/{id}")
     @CrossOrigin(origins = "http://localhost:3000")
     public void deleteIncident(@PathVariable Long id) {
         incidentService.deleteIncidentById(id);
     }
 
-    @DeleteMapping("/deshboard/delete-multiple")
+    @DeleteMapping("/delete-multiple")
     @CrossOrigin(origins = "http://localhost:3000")
     public void deleteMultipleIncidents(@RequestBody List<Long> ids) {
         incidentService.deleteIncidentsByIds(ids);
     }
 
-    @GetMapping("/deshboard/{id}")
+    @GetMapping("/{id}")
     @CrossOrigin(origins = "http://localhost:3000")
     public ResponseEntity<Incidents> getIncidentById(@PathVariable Long id) {
         Incidents incident = incidentService.findIncidentById(id);
@@ -47,7 +47,7 @@ public class IncidentController {
             return ResponseEntity.notFound().build();
         }
     }
-    @PatchMapping("/deshboard/{id}")
+    @PatchMapping("/{id}")
     @CrossOrigin(origins = "http://localhost:3000")
     public ResponseEntity<Incidents> updateIncident(
             @PathVariable Long id, @RequestBody Incidents updatedIncident) {
