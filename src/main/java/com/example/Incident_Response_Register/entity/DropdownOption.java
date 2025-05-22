@@ -17,10 +17,10 @@ public class DropdownOption {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String type;    // e.g., "nature_incident", "severity", etc.
-    private String value;   // e.g., "IT Related Incident", "Low", etc.
+    private String type;
+    private String value;
 
-    // Constructors
+
     public DropdownOption() {}
 
     public DropdownOption(String type, String value) {
