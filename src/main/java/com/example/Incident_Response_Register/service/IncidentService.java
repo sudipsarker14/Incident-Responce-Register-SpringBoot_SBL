@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import com.example.Incident_Response_Register.entity.Incidents;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -15,7 +16,6 @@ import java.util.Optional;
 public class IncidentService {
     @Autowired
     IncidentRepo incidentRepo;
-
 
     public List<Incidents> getAllIncidents() {
         return incidentRepo.findAll();
@@ -41,5 +41,19 @@ public class IncidentService {
     public Incidents saveIncident(Incidents incident) {
         return incidentRepo.save(incident);
     }
+
+    public List<Incidents> getIncidentsByRole(String role) {
+        switch (role) {
+            case "IT_TEAM":
+                return incidentRepo.findByNatureOfIncident("IT Related Incident");
+            case "MANMADE_TEAM":
+                return incidentRepo.findByNatureOfIncident("Manmade Incident");
+            case "NATURE_TEAM":
+                return incidentRepo.findByNatureOfIncident("Natural Calamities Incident");
+            default:
+               return new ArrayList<>(); // return empty list if unknown role
+        }
+    }
 }
+
 

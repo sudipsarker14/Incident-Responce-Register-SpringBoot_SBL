@@ -1,10 +1,13 @@
 package com.example.Incident_Response_Register.controller;
 import com.example.Incident_Response_Register.entity.Incidents;
 import com.example.Incident_Response_Register.service.IncidentService;
+import com.example.Incident_Response_Register.utils.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.security.Keys;
 import java.util.List;
 
 @RestController
@@ -13,6 +16,9 @@ public class IncidentController {
 
     @Autowired
     IncidentService incidentService;
+
+    @Autowired
+    private JwtUtil jwtUtil;
 
     @PostMapping("/addIncident")
     @CrossOrigin(origins = "http://localhost:3000")
@@ -77,5 +83,11 @@ public class IncidentController {
 
         return ResponseEntity.ok(incident);
     }
-
+    @GetMapping("/incidents/by-role")
+    @CrossOrigin(origins = "http://localhost:3000")
+    public ResponseEntity<List<Incidents>> getIncidentsByUserRole(@RequestHeader("Authorization") String token) {
+        String role = jwtUtil.extractRole(token); // or fetch from logged-in user context
+        List<Incidents> incidents = incidentService.getIncidentsByRole(role);
+        return ResponseEntity.ok(incidents);
+    }
 }

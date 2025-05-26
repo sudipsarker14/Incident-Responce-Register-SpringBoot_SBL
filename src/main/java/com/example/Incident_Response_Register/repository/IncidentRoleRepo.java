@@ -7,9 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface IncidentRepo extends JpaRepository<Incidents, Long> {
+public interface IncidentRoleRepo extends JpaRepository <Incidents, Long> {
     List<Incidents> findByNatureOfIncident(String natureOfIncident);
 }
-
-
-
